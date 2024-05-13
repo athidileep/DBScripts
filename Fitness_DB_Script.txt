@@ -1,0 +1,199 @@
+CREATE TABLE IF NOT EXISTS dbo.users(
+	id INT GENERATED ALWAYS AS IDENTITY,
+	sassid int not null,
+	usertypeid int not null,
+	username varchar(20) not null,
+	password varchar(20) not null,
+	firstname varchar(50) not null,
+	lastname varchar(50) not null,
+	dateofbirth timestamp not null,
+	gender int not null,
+	maritalstatus int null,
+	anniversarydate timestamp null,
+	height int not null,
+	weight decimal not null,
+	memberfrom timestamp not null,
+	memberto timestamp not null,
+	email varchar(255) null,
+	contactnumber bigint not null,
+	emergencycontactperson varchar(100) null,
+	emergencycontactnumber bigint null,
+	address varchar(500) null,
+	locationstate int null,
+	locationcountry int null,
+	createdby varchar(50) not null,
+	createdat timestamp not null,
+	modifiedby varchar(50) null,
+	modifiedat timestamp null,
+	status varchar(20)
+);
+
+CREATE TABLE IF NOT EXISTS dbo.locationstate(
+	id INT GENERATED ALWAYS AS IDENTITY,
+	statecode varchar(10) not null,
+	statename varchar(50) not null,
+	locationcountryid int not null,
+	createdby varchar(50) not null,
+	createdat timestamp not null,
+	modifiedby varchar(50) null,
+	modifiedat timestamp null,
+	status varchar(20)
+);
+
+
+CREATE TABLE IF NOT EXISTS dbo.sassdetails(
+	id INT GENERATED ALWAYS AS IDENTITY,
+	sasscode varchar(10) not null,
+	sassname varchar(50) not null,
+	memberfrom timestamp not null,
+	memberto timestamp not null,
+	createdby varchar(50) not null,
+	createdat timestamp not null,
+	modifiedby varchar(50) null,
+	modifiedat timestamp null,
+	status varchar(20)
+);
+
+CREATE TABLE IF NOT EXISTS dbo.locationcountry(
+	id INT GENERATED ALWAYS AS IDENTITY,
+	countrycode varchar(10) not null,
+	countryname varchar(50) not null,
+	createdby varchar(50) not null,
+	createdat timestamp not null,
+	modifiedby varchar(50) null,
+	modifiedat timestamp null,
+	status varchar(20)
+);
+
+CREATE TABLE IF NOT EXISTS dbo.usertype(
+	id INT GENERATED ALWAYS AS IDENTITY,
+	typecode varchar(10) not null,
+	typename varchar(50) not null,
+	createdby varchar(50) not null,
+	createdat timestamp not null,
+	modifiedby varchar(50) null,
+	modifiedat timestamp null,
+	status varchar(20)
+);
+
+CREATE TABLE IF NOT EXISTS dbo.gendertype(
+	id INT GENERATED ALWAYS AS IDENTITY,
+	gendercode varchar(10) not null,
+	gendername varchar(50) not null,
+	createdby varchar(50) not null,
+	createdat timestamp not null,
+	modifiedby varchar(50) null,
+	modifiedat timestamp null,
+	status varchar(20)
+);
+
+CREATE TABLE IF NOT EXISTS dbo.maritalstatus(
+	id INT GENERATED ALWAYS AS IDENTITY,
+	maritalcode varchar(10) not null,
+	maritalname varchar(50) not null,
+	createdby varchar(50) not null,
+	createdat timestamp not null,
+	modifiedby varchar(50) null,
+	modifiedat timestamp null,
+	status varchar(20)
+);
+
+CREATE TABLE IF NOT EXISTS dbo.usermedicalinfo(
+	id INT GENERATED ALWAYS AS IDENTITY,
+	userid int not null,
+	medicalcondition bool not null,
+	medicaldetails text null,
+	medication bool not null,
+	medicationdetails text null,
+	createdby varchar(50) not null,
+	createdat timestamp not null,
+	modifiedby varchar(50) null,
+	modifiedat timestamp null,
+	status varchar(20)
+);
+
+CREATE TABLE IF NOT EXISTS dbo.userdailytrack(
+	id INT GENERATED ALWAYS AS IDENTITY,
+	userid int not null,
+	infodate timestamp not null,
+	weight decimal not null,
+	bodyfat decimal null,
+	musclemass decimal null,
+	createdby varchar(50) not null,
+	createdat timestamp not null,
+	modifiedby varchar(50) null,
+	modifiedat timestamp null,
+	status varchar(20)
+);
+
+CREATE TABLE IF NOT EXISTS dbo.useractivitytrack(
+	id INT GENERATED ALWAYS AS IDENTITY,
+	userid int not null,
+	userdailytrackid int not null,
+	activitytypeid int not null,
+	activityname varchar(50) not null,
+	duration int null,
+	reps int null,
+	setsinfo int null,
+	weight int null,
+	caloriesburned decimal null,
+	intensitylevelid int null,
+	note text null,
+	createdby varchar(50) not null,
+	createdat timestamp not null,
+	modifiedby varchar(50) null,
+	modifiedat timestamp null,
+	status varchar(20)
+);
+
+CREATE TABLE IF NOT EXISTS dbo.activitytype(
+	id INT GENERATED ALWAYS AS IDENTITY,
+	activitycode varchar(10) not null,
+	activityname varchar(50) not null,
+	createdby varchar(50) not null,
+	createdat timestamp not null,
+	modifiedby varchar(50) null,
+	modifiedat timestamp null,
+	status varchar(20)
+);
+
+CREATE TABLE IF NOT EXISTS dbo.intensitylevel(
+	id INT GENERATED ALWAYS AS IDENTITY,
+	intensitycode varchar(10) not null,
+	intensityname varchar(50) not null,
+	createdby varchar(50) not null,
+	createdat timestamp not null,
+	modifiedby varchar(50) null,
+	modifiedat timestamp null,
+	status varchar(20)
+);
+
+CREATE TABLE IF NOT EXISTS dbo.goalsetting(
+	id INT GENERATED ALWAYS AS IDENTITY,
+	userid int not null,
+	goaltypeid int not null,
+	targetweight decimal not null,
+	targetbodyfat decimal null,
+	targetmusclemass decimal null,
+	targetduration int null,
+	workoutfrequency int null,
+	workoutduration int null,
+	protein decimal null,
+	createdby varchar(50) not null,
+	createdat timestamp not null,
+	modifiedby varchar(50) null,
+	modifiedat timestamp null,
+	status varchar(20)
+);
+
+CREATE 	TABLE IF NOT EXISTS dbo.goaltype(
+id INT GENERATED ALWAYS AS IDENTITY,
+code varchar(20) not null,
+name varchar(50) not null,
+createdby varchar(50) not null,
+createdat timestamp without time zone not null,
+modifiedby varchar(50),
+modifiedat timestamp without time zone,
+status varchar(20) not null
+);
+
